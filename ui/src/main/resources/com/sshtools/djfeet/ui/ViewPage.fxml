@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sshtools.djfeet.ui.ViewPage">
+   <children>
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <bottom>
+            <BorderPane BorderPane.alignment="CENTER">
+               <left>
+                  <HBox styleClass="spaced" BorderPane.alignment="CENTER">
+                     <children>
+                        <Hyperlink onAction="#about" text="%about" />
+                        <Hyperlink onAction="#options" text="%options" />
+                     </children>
+                  </HBox>
+               </left>
+               <styleClass>
+                  <String fx:value="tpad" />
+                  <String fx:value="bpad" />
+               </styleClass>
+               <right>
+                  <Hyperlink fx:id="newBus" onAction="#newBus" styleClass="pill-success" text="%newBus" BorderPane.alignment="CENTER">
+                     <graphic>
+                        <FontIcon iconLiteral="fas-plus-circle" />
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="%newBus.toolTip" />
+                     </tooltip>
+                  </Hyperlink>
+               </right>
+            </BorderPane>
+         </bottom>
+         <center>
+            <TabPane fx:id="tabs" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

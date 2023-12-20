@@ -4,13 +4,17 @@ A cross-platform, JavaFX based clone of [D-Feet](https://wiki.gnome.org/Apps/DFe
 
 ![Screenshot](src/main/web/screenshot.png  "Screenshot")
 
+## Announcement
+
+### 20/12/2003
+
+DJ-Feet is now hosted by my employer [JADAPTIVE](https://jadaptive.com). It will remain free
+and open source, this change is to just take advantage of JADAPTIVES code signing and build
+infrastructure.    
+
 ## Installation
 
-Installers are provided for Linux, Windows and Mac OS. Download and run the GUI installers appropriate for your desktop.
-
- * [Linux Installer](https://github.com/bithatch/dj-feet/releases/download/1.1.0/dj-feet_unix_1_0_3.sh)  
- * [Mac OS Installer](https://github.com/bithatch/dj-feet/releases/download/1.1.0/dj-feet_macos_1_0_3.dmg)  
- * [Windows Installer](https://github.com/bithatch/dj-feet/releases/download/1.1.0/dj-feet_windows-x64_1_0_3.exe)
+TODO
  
 ### Run From Source
 
@@ -62,6 +66,12 @@ With the installers, also included are easy launchers for all of the [dbus-java-
  
  
 ## Changes
+
+### 2.0.0
+
+ * Now developed by JADAPTIVE.   
+ * Built-in updater.
+ * Ability to access remote buses over SSH
 
 ### 1.1.0
 

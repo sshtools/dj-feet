@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sshtools.djfeet.ui.OptionsPage">
+   <center>
+      <AnchorPane BorderPane.alignment="CENTER">
+         <children>
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="spaced" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label styleClass="h2" text="%title" />
+                  <Label layoutX="10.0" layoutY="26.0" text="%behaviour">
+                     <styleClass>
+                        <String fx:value="h3" />
+                        <String fx:value="tpad" />
+                     </styleClass>
+                  </Label>
+                  <CheckBox fx:id="executeImmediatelyIfNoArguments" mnemonicParsing="false" selected="true" styleClass="lpad" text="%executeImmediatelyIfNoArguments" />
+                  <Label text="%updates">
+                     <styleClass>
+                        <String fx:value="h3" />
+                        <String fx:value="tpad" />
+                     </styleClass></Label>
+                  <VBox>
+                     <children>
+                        <CheckBox fx:id="automaticUpdates" mnemonicParsing="false" selected="true" text="%automaticUpdates">
+                           <tooltip>
+                              <Tooltip text="%automaticUpdates.toolTip" />
+                           </tooltip>
+                        </CheckBox>
+                        <HBox alignment="CENTER_LEFT" styleClass="spaced">
+                           <children>
+                              <Label prefWidth="120.0" text="%phase" />
+                              <ComboBox fx:id="phase" prefWidth="250.0">
+                                 <tooltip>
+                                    <Tooltip text="%phase.toolTip" />
+                                 </tooltip>
+                              </ComboBox>
+                           </children>
+                        </HBox>
+                     </children>
+                     <styleClass>
+                        <String fx:value="lpad" />
+                        <String fx:value="spaced" />
+                     </styleClass>
+                  </VBox>
+                  <Label text="%appearance">
+                     <styleClass>
+                        <String fx:value="h3" />
+                        <String fx:value="tpad" />
+                     </styleClass>
+                  </Label>
+                  <VBox>
+                     <children>
+                        <HBox alignment="CENTER_LEFT" styleClass="spaced">
+                           <children>
+                              <Label prefWidth="120.0" text="%darkMode" />
+                              <ComboBox fx:id="darkMode" prefWidth="150.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <styleClass>
+                        <String fx:value="lpad" />
+                        <String fx:value="spaced" />
+                     </styleClass>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </center>
+   <bottom>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <Hyperlink onAction="#back" text="%back">
+               <graphic>
+                  <FontIcon iconLiteral="fas-arrow-alt-circle-left" iconSize="48" styleClass="icon-accent" />
+               </graphic>
+            </Hyperlink>
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>

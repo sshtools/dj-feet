@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sshtools.djfeet.ui.NewBusPage">
+   <center>
+      <AnchorPane BorderPane.alignment="CENTER">
+         <children>
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="spaced" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label styleClass="h2" text="%title" />
+                  <Label text="%address" />
+                  <BorderPane>
+                     <center>
+                        <TextField fx:id="address" promptText="%prompt" />
+                     </center>
+                     <left>
+                        <HBox alignment="CENTER_LEFT" styleClass="spaced" BorderPane.alignment="CENTER">
+                           <children>
+                              <ComboBox fx:id="busType" />
+                              <Label text=":" />
+                           </children>
+                        </HBox>
+                     </left>
+                  </BorderPane>
+                  <Label fx:id="noKnownParameters" layoutX="10.0" layoutY="66.0" text="%noKnownParameters" />
+                  <VBox fx:id="parameterHelp" prefHeight="200.0" prefWidth="100.0" styleClass="small-spaced" />
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </center>
+   <bottom>
+      <BorderPane BorderPane.alignment="CENTER">
+         <center>
+            <HBox>
+               <children>
+                  <Hyperlink fx:id="connect" onAction="#connect" text="%connect">
+                     <graphic>
+                        <FontIcon iconLiteral="fas-plug" iconSize="48" styleClass="icon-accent" />
+                     </graphic>
+                  </Hyperlink>
+               </children>
+            </HBox>
+         </center>
+         <right>
+            <Hyperlink onAction="#back" text="%back" BorderPane.alignment="CENTER">
+               <graphic>
+                  <FontIcon iconLiteral="fas-arrow-alt-circle-left" iconSize="22" styleClass="icon-accent" />
+               </graphic>
+            </Hyperlink>
+         </right>
+      </BorderPane>
+   </bottom>
+</BorderPane>

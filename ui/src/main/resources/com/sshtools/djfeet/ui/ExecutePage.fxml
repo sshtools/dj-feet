@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.TextFlow?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sshtools.djfeet.ui.ExecutePage">
+   <center>
+      <AnchorPane BorderPane.alignment="CENTER">
+         <children>
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="spaced" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <BorderPane styleClass="large-tpad">
+                     <left>
+                        <Label minWidth="150.0" styleClass="strong" text="%methodAddress" BorderPane.alignment="TOP_CENTER" />
+                     </left>
+                     <center>
+                        <TextFlow fx:id="signature" prefHeight="42.0" prefWidth="450.0" BorderPane.alignment="CENTER" />
+                     </center>
+                  </BorderPane>
+                  <BorderPane>
+                     <left>
+                        <Label minWidth="150.0" styleClass="strong" text="%busAddress" BorderPane.alignment="CENTER" />
+                     </left>
+                     <center>
+                        <TextField fx:id="busAddress" editable="false" styleClass="selectable-label" BorderPane.alignment="CENTER" />
+                     </center>
+                  </BorderPane>
+                  <BorderPane>
+                     <left>
+                        <Label minWidth="150.0" styleClass="strong" text="%objectPath" BorderPane.alignment="CENTER" />
+                     </left>
+                     <center>
+                        <TextField fx:id="objectPath" editable="false" styleClass="selectable-label" BorderPane.alignment="CENTER" />
+                     </center>
+                  </BorderPane>
+                  <BorderPane>
+                     <left>
+                        <Label minWidth="150.0" styleClass="strong" text="%iface" BorderPane.alignment="CENTER" />
+                     </left>
+                     <center>
+                        <TextField fx:id="iface" editable="false" styleClass="selectable-label" BorderPane.alignment="CENTER" />
+                     </center>
+                  </BorderPane>
+                  <BorderPane styleClass="large-tpad">
+                     <left>
+                        <Label styleClass="strong" text="%methodInput" BorderPane.alignment="CENTER" />
+                     </left>
+                     <right>
+                        <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#spel" styleClass="hyperlink" text="%spel" BorderPane.alignment="CENTER" />
+                     </right>
+                  </BorderPane>
+                  <TextArea fx:id="methodInput" prefHeight="130.0" prefRowCount="6" wrapText="true" />
+                  <Label layoutX="10.0" layoutY="98.0" styleClass="strong" text="%methodOutput" />
+                  <TextArea fx:id="methodOutput" editable="false" prefRowCount="6" wrapText="true" />
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </center>
+   <bottom>
+      <BorderPane BorderPane.alignment="CENTER">
+         <center>
+            <HBox>
+               <children>
+                  <Hyperlink fx:id="execute" onAction="#execute" text="%execute">
+                     <graphic>
+                        <FontIcon iconLiteral="fas-running" iconSize="48" styleClass="icon-accent" />
+                     </graphic>
+                  </Hyperlink>
+               </children>
+            </HBox>
+         </center>
+         <right>
+            <Hyperlink onAction="#back" text="%back" BorderPane.alignment="CENTER">
+               <graphic>
+                  <FontIcon iconLiteral="fas-arrow-alt-circle-left" iconSize="22" styleClass="icon-accent" />
+               </graphic>
+            </Hyperlink>
+         </right>
+      </BorderPane>
+   </bottom>
+   <top>
+      <Label styleClass="h2" text="%title" BorderPane.alignment="CENTER_LEFT" />
+   </top>
+</BorderPane>
