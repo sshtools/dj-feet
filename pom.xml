@@ -185,10 +185,13 @@
 		</pluginRepository>
 	</pluginRepositories>
 	<repositories>
-		<repository>
-			<id>jitpack.io</id>
-			<url>https://jitpack.io</url>
-		</repository>
+        <repository>
+            <id>ossrh-sshtools</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
 		<repository>
 			<id>ej-technologies</id>
 			<url>https://maven.ej-technologies.com/repository</url>
