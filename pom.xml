@@ -27,6 +27,10 @@
 			${project.basedir}/src/main/install4j/dj-feet.install4j</build.install4j.project>
 		<build.projectProperties>${basedir}/hypersocket.build.properties</build.projectProperties>
 		<build.userProperties>${user.home}/.hypersocket.build.properties</build.userProperties>
+		
+		<install4j.appleId>xxxxxx@logonbox.com</install4j.appleId>
+		<install4j.macSigning>true</install4j.macSigning>
+		<install4j.windowsSigning>true</install4j.windowsSigning>
 	</properties>
 	<url>https://jadaptive.com</url>
 	<licenses>
