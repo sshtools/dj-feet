@@ -109,7 +109,7 @@ public class ExportPage extends AbstractTile<DJFeetApp> {
 		}
 		directoryChooser.setInitialDirectory(dir);
 		directoryChooser.setTitle("Choose directory to export to.");
-		var selectedDirectory = directoryChooser.showDialog(getContext().getPrimaryStage());
+		var selectedDirectory = directoryChooser.showDialog(getContext().getWindows().get(0).stage());
 		if (selectedDirectory != null) {
 			var path = selectedDirectory.getAbsolutePath();
 			if (path.equals(outputDirectory.getPromptText())) {
@@ -143,7 +143,7 @@ public class ExportPage extends AbstractTile<DJFeetApp> {
 
 			runLater(() -> {
 				var alt = new Alert(AlertType.INFORMATION);
-				alt.initOwner(getContext().getPrimaryStage());
+				alt.initOwner(getContext().getWindows().get(0).stage());
 				alt.setTitle("Export Complete");
 				alt.setContentText(String.format("%d Java sources were created.", allMap.size()));
 				alt.showAndWait();
@@ -153,7 +153,7 @@ public class ExportPage extends AbstractTile<DJFeetApp> {
 			LOG.error("Failed to export.", dbe);
 			runLater(() -> {
 				var alt = new Alert(AlertType.ERROR);
-				alt.initOwner(getContext().getPrimaryStage());
+				alt.initOwner(getContext().getWindows().get(0).stage());
 				alt.setTitle("Error");
 				alt.setContentText(dbe.getMessage() == null ? "No message supplied." : dbe.getMessage());
 				alt.showAndWait();

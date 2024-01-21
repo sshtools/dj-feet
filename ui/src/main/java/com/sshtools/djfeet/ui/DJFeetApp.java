@@ -11,6 +11,7 @@ import com.sshtools.jajafx.UpdatePage;
 
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.stage.Stage;
 
 public class DJFeetApp extends JajaFXApp<DJFeet> {
 
@@ -46,7 +47,8 @@ public class DJFeetApp extends JajaFXApp<DJFeet> {
 	}
 
 	@Override
-	protected Node createContent() {
+	protected Node createContent(Stage stage) {
+
 		tiles = new Tiles<>(this);
 		tiles.add(ViewPage.class);
 		tiles.getStyleClass().add("padded");
