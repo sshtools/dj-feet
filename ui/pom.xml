@@ -51,7 +51,6 @@
 		<dependency>
 			<groupId>com.sshtools</groupId>
 			<artifactId>jaul</artifactId>
-			<version>0.9.9</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sshtools</groupId>
@@ -83,7 +82,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.github.hypfvieh</groupId>
-			<artifactId>dbus-java-transport-native-unixsocket</artifactId>
+			<artifactId>dbus-java-transport-junixsocket</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.sshtools</groupId>

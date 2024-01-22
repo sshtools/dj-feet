@@ -58,6 +58,11 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
+				<groupId>com.sshtools</groupId>
+				<artifactId>jaul</artifactId>
+				<version>0.9.9</version>
+			</dependency>
+			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-simple</artifactId>
 				<version>2.0.9</version>
@@ -95,7 +100,7 @@
 			</dependency>
 			<dependency>
 				<groupId>com.github.hypfvieh</groupId>
-				<artifactId>dbus-java-transport-native-unixsocket</artifactId>
+				<artifactId>dbus-java-transport-junixsocket</artifactId>
 				<version>${dbus.version}</version>
 			</dependency>
 			<dependency>

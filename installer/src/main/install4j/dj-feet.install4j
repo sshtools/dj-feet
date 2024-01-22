@@ -119,8 +119,10 @@
       <executable name="dbus-java-list" iconSet="true" redirectStderr="false" executableMode="console" />
       <java mainClass="org.freedesktop.dbus.utils/org.freedesktop.dbus.utils.bin.ListDBus" mainMode="module">
         <modulePath>
-          <archive location="lib/dbus-java-transport-native-unixsocket.jar" failOnError="false" />
+          <archive location="lib/dbus-java-transport-junixsocket.jar" failOnError="false" />
           <archive location="lib/dbus-java-transport-tcp.jar" failOnError="false" />
+          <archive location="lib/junixsocket-native-common.jar" failOnError="false" />
+          <archive location="lib/junixsocket-common.jar" failOnError="false" />
           <archive location="lib/dbus-java-core.jar" failOnError="false" />
           <archive location="lib/slf4j-api.jar" failOnError="false" />
           <archive location="lib/dbus-java-utils.jar" failOnError="false" />
@@ -135,8 +137,10 @@
       <executable name="dbus-java-daemonc" iconSet="true" redirectStderr="false" executableMode="console" />
       <java mainClass="com.sshtools.djfeet.daemon/com.sshtools.djfeet.daemon.DBusDaemon" mainMode="module">
         <modulePath>
-          <archive location="lib/dbus-java-transport-native-unixsocket.jar" failOnError="false" />
           <archive location="lib/dbus-java-transport-tcp.jar" failOnError="false" />
+          <archive location="lib/dbus-java-transport-junixsocket.jar" failOnError="false" />
+          <archive location="lib/junixsocket-common.jar" failOnError="false" />
+          <archive location="lib/junixsocket-native-common.jar" failOnError="false" />
           <archive location="lib/dbus-java-core.jar" failOnError="false" />
           <archive location="lib/slf4j-api.jar" failOnError="false" />
           <archive location="lib/dbus-java-utils.jar" failOnError="false" />
@@ -152,7 +156,9 @@
       <executable name="dbus-java-viewer" iconSet="true" executableMode="gui" />
       <java mainClass="org.freedesktop.dbus.utils/org.freedesktop.dbus.viewer.DBusViewer" mainMode="module">
         <modulePath>
-          <archive location="lib/dbus-java-transport-native-unixsocket.jar" failOnError="false" />
+          <archive location="lib/dbus-java-transport-junixsocket.jar" failOnError="false" />
+          <archive location="lib/junixsocket-common.jar" failOnError="false" />
+          <archive location="lib/junixsocket-native-common.jar" failOnError="false" />
           <archive location="lib/dbus-java-transport-tcp.jar" failOnError="false" />
           <archive location="lib/dbus-java-core.jar" failOnError="false" />
           <archive location="lib/slf4j-api.jar" failOnError="false" />
@@ -168,7 +174,9 @@
       <executable name="dbus-java-interface-code-generator" iconSet="true" redirectStderr="false" executableMode="console" />
       <java mainClass="org.freedesktop.dbus.utils/org.freedesktop.dbus.utils.generator.InterfaceCodeGenerator" mainMode="module">
         <modulePath>
-          <archive location="lib/dbus-java-transport-native-unixsocket.jar" failOnError="false" />
+          <archive location="lib/dbus-java-transport-junixsocket.jar" failOnError="false" />
+          <archive location="lib/junixsocket-common.jar" failOnError="false" />
+          <archive location="lib/junixsocket-native-common.jar" failOnError="false" />
           <archive location="lib/dbus-java-transport-tcp.jar" failOnError="false" />
           <archive location="lib/dbus-java-core.jar" failOnError="false" />
           <archive location="lib/slf4j-api.jar" failOnError="false" />
@@ -184,8 +192,10 @@
       <executable name="dbus-java-caller" iconSet="true" redirectStderr="false" executableMode="console" />
       <java mainClass="org.freedesktop.dbus.utils/org.freedesktop.dbus.utils.bin.Caller" mainMode="module">
         <modulePath>
-          <archive location="lib/dbus-java-transport-native-unixsocket.jar" failOnError="false" />
           <archive location="lib/dbus-java-transport-tcp.jar" failOnError="false" />
+          <archive location="lib/dbus-java-transport-junixsocket.jar" failOnError="false" />
+          <archive location="lib/junixsocket-native-common.jar" failOnError="false" />
+          <archive location="lib/junixsocket-common.jar" failOnError="false" />
           <archive location="lib/dbus-java-core.jar" failOnError="false" />
           <archive location="lib/slf4j-api.jar" failOnError="false" />
           <archive location="lib/dbus-java-utils.jar" failOnError="false" />
@@ -200,8 +210,10 @@
       <executable name="dbus-java-type-string-to-java" iconSet="true" redirectStderr="false" executableMode="console" />
       <java mainClass="org.freedesktop.dbus.utils/org.freedesktop.dbus.utils.translator.DBusTypeStringToJava" mainMode="module">
         <modulePath>
-          <archive location="lib/dbus-java-transport-native-unixsocket.jar" failOnError="false" />
           <archive location="lib/dbus-java-transport-tcp.jar" failOnError="false" />
+          <archive location="lib/dbus-java-transport-junixsocket.jar" failOnError="false" />
+          <archive location="lib/junixsocket-common.jar" failOnError="false" />
+          <archive location="lib/junixsocket-native-common.jar" failOnError="false" />
           <archive location="lib/dbus-java-core.jar" failOnError="false" />
           <archive location="lib/slf4j-api.jar" failOnError="false" />
           <archive location="lib/dbus-java-utils.jar" failOnError="false" />
@@ -216,8 +228,10 @@
       <executable name="dbus-java-daemon" iconSet="true" stderrFile="logs/daemon.log" redirectStdout="true" stdoutFile="logs/daemon.log" executableMode="service" />
       <java mainClass="com.sshtools.djfeet.daemon/com.sshtools.djfeet.daemon.DBusDaemon" mainMode="module" arguments="--addresspref default --addressfile ${installer:sys.tempDir}/dbus-java.address --insecure --tcp --auth-mode AUTH_ANONYMOUS">
         <modulePath>
-          <archive location="lib/dbus-java-transport-native-unixsocket.jar" failOnError="false" />
           <archive location="lib/dbus-java-transport-tcp.jar" failOnError="false" />
+          <archive location="lib/dbus-java-transport-junixsocket.jar" failOnError="false" />
+          <archive location="lib/junixsocket-common.jar" failOnError="false" />
+          <archive location="lib/junixsocket-native-common.jar" failOnError="false" />
           <archive location="lib/dbus-java-core.jar" failOnError="false" />
           <archive location="lib/slf4j-api.jar" failOnError="false" />
           <archive location="lib/slf4j-simple.jar" failOnError="false" />
