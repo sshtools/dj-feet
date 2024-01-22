@@ -120,7 +120,7 @@ public class ExecutePage extends AbstractTile<DJFeetApp> {
 	
 	@FXML
 	private void spel(MouseEvent evt) {
-		getContext().getHostServices().showDocument("https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/expressions.html");
+		getContext().getHostServices().showDocument("https://nussknacker.io/documentation/docs/scenarios_authoring/Spel");
 	}
 
 	@FXML

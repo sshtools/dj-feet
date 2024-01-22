@@ -81,16 +81,16 @@ public class DBusConnectionTab extends AnchorPane {
 	@FXML
 	private TextField uniqueName;
 	
-	private final DBusConnection connection;
-	private final DBus dbus;
-	private final FilteredList<BusData> filteredData;
-	private final ObservableList<BusData> names;
-	private final List<String> activatable;
 	private final DJFeetApp context;
 	private final TabPane tabs;
+
+	private DBusConnection connection;
+	private DBus dbus;
+	private List<String> activatable;
+	private ObservableList<BusData> names;
+	private FilteredList<BusData> filteredData;
 	
-	public DBusConnectionTab(TabPane tabs, DJFeetApp context,  DBusConnection connection) throws DBusException {
-		this.connection = connection;
+	public DBusConnectionTab(TabPane tabs, DJFeetApp context) {
 		this.context = context;
 		this.tabs = tabs;
 		
@@ -103,6 +103,10 @@ public class DBusConnectionTab extends AnchorPane {
 		} catch (IOException e) {
 			throw new UncheckedIOException(e);
 		}
+	}
+	
+	public void connect(DBusConnection connection, Runnable onReady) throws DBusException {
+		this.connection = connection;
 
 		dbus = connection.getRemoteObject("org.freedesktop.DBus", "/org/freedesktop/DBus", DBus.class);
 
@@ -176,43 +180,48 @@ public class DBusConnectionTab extends AnchorPane {
 			}
 		});
 		
-		busNameSearch.textProperty().addListener(obs -> {
-			String filter = busNameSearch.getText();
-			if (filter == null || filter.length() == 0) {
-				filteredData.setPredicate(s -> true);
-			} else {
-				filteredData.setPredicate(s -> s.getName().toLowerCase().contains(filter.toLowerCase()));
-			}
-		});
-		busNames.setItems(filteredData);
-		busNames.setCellFactory(lv -> new BusCell());
-		busNames.getSelectionModel().selectedItemProperty().addListener((c, o, n) -> {
+		runLater(() -> {
+		
+			busNameSearch.textProperty().addListener(obs -> {
+				String filter = busNameSearch.getText();
+				if (filter == null || filter.length() == 0) {
+					filteredData.setPredicate(s -> true);
+				} else {
+					filteredData.setPredicate(s -> s.getName().toLowerCase().contains(filter.toLowerCase()));
+				}
+			});
+			busNames.setItems(filteredData);
+			busNames.setCellFactory(lv -> new BusCell());
+			busNames.getSelectionModel().selectedItemProperty().addListener((c, o, n) -> {
+				update();
+			});
+	
+			// Tree View
+			var group = PseudoClass.getPseudoClass("group");
+			objects.setRoot(new TreeItem<>(new ObjectData(null)));
+			objects.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+			objects.getSelectionModel().selectedItemProperty().addListener((c, o, n) -> setAvailable());
+			objects.setOnMouseClicked(e -> {
+				if (e.getClickCount() == 2) {
+					TreeItem<BusTreeData> selected = objects.getSelectionModel().getSelectedItem();
+					if (selected != null && selected.getValue() instanceof MethodData)
+						executeMethod((MethodData) selected.getValue());
+					else if (selected != null && selected.getValue() instanceof PropertyData)
+						loadProperty((PropertyData) selected.getValue());
+				}
+			});
+			objects.setCellFactory(lv -> {
+				var cell = new BusTreeCell();
+				cell.treeItemProperty().addListener((obs, oldTreeItem, newTreeItem) -> cell.pseudoClassStateChanged(group,
+						newTreeItem != null && newTreeItem.getValue() != null && newTreeItem.getValue().isGroup()));
+				return cell;
+			});
+	
+			// First update
 			update();
+			
+			onReady.run();
 		});
-
-		// Tree View
-		var group = PseudoClass.getPseudoClass("group");
-		objects.setRoot(new TreeItem<>(new ObjectData(null)));
-		objects.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		objects.getSelectionModel().selectedItemProperty().addListener((c, o, n) -> setAvailable());
-		objects.setOnMouseClicked(e -> {
-			if (e.getClickCount() == 2) {
-				TreeItem<BusTreeData> selected = objects.getSelectionModel().getSelectedItem();
-				if (selected != null && selected.getValue() instanceof MethodData)
-					executeMethod((MethodData) selected.getValue());
-				else if (selected != null && selected.getValue() instanceof PropertyData)
-					loadProperty((PropertyData) selected.getValue());
-			}
-		});
-		objects.setCellFactory(lv -> {
-			var cell = new BusTreeCell();
-			cell.treeItemProperty().addListener((obs, oldTreeItem, newTreeItem) -> cell.pseudoClassStateChanged(group,
-					newTreeItem != null && newTreeItem.getValue() != null && newTreeItem.getValue().isGroup()));
-			return cell;
-		});
-
-		// First update
-		update();
 	}
 
 	@FXML

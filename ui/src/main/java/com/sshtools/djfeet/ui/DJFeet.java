@@ -35,7 +35,7 @@ public class DJFeet extends JajaApp<DJFeetApp> {
 
 		@Override
 		public String[] getVersion() throws Exception {
-			return new String[] { ArtifactVersion.getVersion("dj-feet", "com.sshtools", "dj-feet") };
+			return new String[] { ArtifactVersion.getVersion("com.sshtools", "dj-feet") };
 		}
 	}
 

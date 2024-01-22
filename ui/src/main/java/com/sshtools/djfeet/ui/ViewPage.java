@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 
 import com.sshtools.jajafx.AboutPage;
 import com.sshtools.jajafx.AbstractTile;
+import com.sshtools.jajafx.PageTransition;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -60,41 +61,53 @@ public class ViewPage extends AbstractTile<DJFeetApp> {
 			} catch (Exception e2) {
 			}
 		}
-		int insertPoint = tabs.getTabs().size();
-		if (insertPoint == 0)
-			runLater(() -> newBus(null));
+		getContext().getContainer().getScheduler().execute(() -> {
+			runLater(() -> {
+				var insertPoint = tabs.getTabs().size();
+				if (insertPoint == 0)
+					runLater(() -> newBus(null));	
+			});
+		});
 	}
 
 	@FXML
 	void about(ActionEvent evt) {
-		getTiles().popup(AboutPage.class);
+		getTiles().popup(AboutPage.class, PageTransition.FROM_RIGHT);
 	}
 
 	@FXML
 	void options(ActionEvent evt) {
-		getTiles().popup(OptionsPage.class);
+		getTiles().popup(OptionsPage.class, PageTransition.FROM_RIGHT);
 	}
 
 	@FXML
 	void newBus(ActionEvent evt) {
 		getTiles();
-		var newBusPage = getTiles().popup(NewBusPage.class);
+		var newBusPage = getTiles().popup(NewBusPage.class, PageTransition.FROM_RIGHT);
 		newBusPage.onBuild = (s, conn) -> {
-			try {
-				var busContent = new DBusConnectionTab(tabs, getContext(), conn);
-				var tab = new Tab(s, busContent);
-				tabs.getTabs().add(tab);
-			} catch (DBusException e) {
-				LOG.error("Failed to create new bus.", e);
-			}
+			var busContent = new DBusConnectionTab(tabs, getContext());
+			var tab = new Tab(s, busContent);
+			getContext().getContainer().getScheduler().execute(() -> {
+				try {
+					busContent.connect(conn, () -> tabs.getTabs().add(tab));
+				} catch (DBusException e) {
+					LOG.error("Failed to create new bus.", e);
+				}
+			});
 		};
 	}
 
 	private void createTabForConnectionBuilder(DBusConnectionBuilder builder, String name) throws DBusException {
-		var busContent = new DBusConnectionTab(tabs, getContext(), builder.build());
+		var busContent = new DBusConnectionTab(tabs, getContext());
 		var tab = new Tab(name, busContent);
 		tab.setClosable(false);
-		tabs.getTabs().add(tab);
+		getContext().getContainer().getScheduler().execute(() -> {
+			try {
+				busContent.connect(builder.build(), () -> tabs.getTabs().add(tab));
+			} catch (DBusException e) {
+				LOG.error("Failed to create new bus.", e);
+			}
+		});
 	}
 
 }
