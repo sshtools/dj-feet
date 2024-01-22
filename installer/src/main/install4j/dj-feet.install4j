@@ -147,6 +147,7 @@
           <archive location="lib/slf4j-simple.jar" failOnError="false" />
           <archive location="lib/dj-feet-daemon.jar" failOnError="false" />
           <archive location="lib/jini.jar" failOnError="false" />
+          <archive location="lib/picocli.jar" failOnError="false" />
         </modulePath>
       </java>
       <iconImageFiles>
@@ -238,6 +239,7 @@
           <archive location="lib/slf4j-simple.jar" failOnError="false" />
           <archive location="lib/dj-feet-daemon.jar" failOnError="false" />
           <archive location="lib/jini.jar" failOnError="false" />
+          <archive location="lib/picocli.jar" failOnError="false" />
         </modulePath>
       </java>
       <iconImageFiles>
