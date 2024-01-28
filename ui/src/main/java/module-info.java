@@ -15,5 +15,7 @@ open module com.sshtools.djfeet.ui {
     requires com.miglayout.core;
 	requires org.freedesktop.dbus;
 	requires org.freedesktop.dbus.utils;
+	requires org.freedesktop.dbus.transport.junixsocket;
+	requires org.freedesktop.dbus.transport.tcp;
 //	requires org.scenicview.scenicview;
 }
