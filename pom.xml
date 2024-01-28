@@ -17,7 +17,7 @@
 		<javafx.maven.plugin.version>0.0.8</javafx.maven.plugin.version>
 		<gluonfx.maven.plugin.version>1.0.16</gluonfx.maven.plugin.version>
 		<javafx.version>21</javafx.version>
-		<dbus.version>5.0.0-SNAPSHOT</dbus.version>
+		<dbus.version>5.0.0</dbus.version>
 		<graalvm.version>0.9.25</graalvm.version>
 
 		<build.phase>continuous</build.phase>
@@ -111,7 +111,7 @@
 			<dependency>
 				<groupId>com.sshtools</groupId>
 				<artifactId>dbus-java-transport-ssh</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
+				<version>0.9.0-SNAPSHOT</version>
 			</dependency>
 		</dependencies>
 
