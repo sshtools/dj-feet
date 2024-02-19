@@ -59,8 +59,8 @@
 		</dependency>
 		<dependency>
 			<groupId>com.sshtools</groupId>
-			<artifactId>jajafx</artifactId>
-			<version>0.9.4</version>
+			<artifactId>jajafx-lib</artifactId>
+			<version>0.9.5-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>info.picocli</groupId>
@@ -69,11 +69,6 @@
 		<dependency>
 			<groupId>com.sshtools</groupId>
 			<artifactId>jaul</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.sshtools</groupId>
-			<artifactId>sequins</artifactId>
-			<version>0.2.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.glassfish</groupId>
@@ -88,7 +83,7 @@
 		<dependency>
 			<groupId>uk.co.bithatch</groupId>
 			<artifactId>FX-BorderlessScene</artifactId>
-			<version>5.0.11</version>
+			<version>5.0.12</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.openjfx</groupId>

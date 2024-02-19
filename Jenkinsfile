@@ -28,6 +28,7 @@ pipeline {
 					 			globalMavenSettingsConfig: '4bc608a8-6e52-4765-bd72-4763f45bfbde'
 					 		) {
 					 		  	sh 'mvn -U -Dbuild.mediaTypes=unixInstaller,unixArchive,linuxRPM,linuxDeb ' +
+					 		  	   '-P cross-platform,installers ' +
 					 		  	   '-Dbuild.projectProperties=$BUILD_PROPERTIES ' +
 					 		  	   '-DbuildInstaller=true clean package'
 					 		  	
@@ -64,7 +65,8 @@ pipeline {
 					 		) {
 					 		  	bat 'mvn -U -Dinstall4j.verbose=true -Dbuild.mediaTypes=windows,windowsArchive ' +
 					 		  	    '"-Dbuild.projectProperties=%BUILD_PROPERTIES%" ' +
-				 		  	        '-DbuildInstaller=true clean package'
+					 		  	   '-P cross-platform,installers ' +
+				 		  	        'clean package'
 					 		  	
 					 		  	/* Stash installers */
 			        			stash includes: 'installer/target/media/*', name: 'windows-djfeet'
@@ -100,7 +102,8 @@ pipeline {
 					 			// -Dinstall4j.disableNotarization=true 
 					 		  	sh 'mvn -U -Dbuild.mediaTypes=macos,macosFolder,macosFolderArchive ' +
 					 		  	   '-Dbuild.projectProperties=$BUILD_PROPERTIES ' +
-					 		  	   '-DbuildInstaller=true clean package'
+					 		  	   '-P cross-platform,installers ' +
+					 		  	   'clean package'
 					 		  	
 					 		  	/* Stash installers */
 			        			stash includes: 'installer/target/media/*', name: 'macos-djfeet'

@@ -508,7 +508,7 @@ return console.askOkCancel(message, true);
               </action>
               <action id="179" beanClass="com.install4j.runtime.beans.actions.services.InstallServiceAction" actionElevationType="elevated" rollbackBarrierExitCode="0">
                 <serializedBean>
-                  <property name="description" type="string">System DBus Broker</property>
+                  <property name="description" type="string">System Bus</property>
                   <property name="launcherId" type="string">170</property>
                   <property name="macosIdentifier" type="string">com.sshtools.dbus.SystemDBus</property>
                 </serializedBean>
@@ -518,6 +518,121 @@ return console.askOkCancel(message, true);
                   <property name="autostartOnly" type="boolean" value="true" />
                   <property name="launcherId" type="string">170</property>
                 </serializedBean>
+              </action>
+              <action name="Session Bus Autostart (Mac Os and Windows)" id="189" beanClass="com.install4j.runtime.beans.actions.desktop.AddStartupItemAction" actionElevationType="elevated" rollbackBarrierExitCode="0">
+                <serializedBean>
+                  <property name="executable">
+                    <object class="java.io.File">
+                      <string>dbus-java-daemon</string>
+                    </object>
+                  </property>
+                  <property name="name" type="string">Session Bus</property>
+                </serializedBean>
+              </action>
+              <action name="Session Bus Autostart (Linux)" id="190" beanClass="com.install4j.runtime.beans.actions.text.WriteTextFileAction" actionElevationType="elevated" rollbackBarrierExitCode="0">
+                <serializedBean>
+                  <property name="file">
+                    <object class="java.io.File">
+                      <string>/etc/xdg/autostart/dbus-java-daemon.desktop</string>
+                    </object>
+                  </property>
+                  <property name="text" type="string">[Desktop Entry]
+Type=Application
+Name=DBus User Broker
+Comment=DBus User Broker
+Exec=${installer:sys.installationDir}/dbus-user-daemon
+Icon=${installer:sys.installationDir}/.install4j/dbus-user-daemon.png
+X-GNOME-AutoRestart=false
+X-GNOME-Autostart-Notify=false
+X-GNOME-Autostart-enabled=true</property>
+                </serializedBean>
+                <condition>Util.isLinux()</condition>
+              </action>
+              <action id="191" beanClass="com.install4j.runtime.beans.actions.misc.ModifyEnvironmentVariableAction" actionElevationType="elevated" failureStrategy="askQuit" errorMessage="DBUS_SESSION_BUS_ADDRESS environment variable could not be set">
+                <serializedBean>
+                  <property name="value" type="string">C:\Users\Public\AppData\DBus-Java\Run\%USERNAME%</property>
+                  <property name="variableName" type="string">DBUS_SESSION_BUS_ADDRESS</property>
+                </serializedBean>
+              </action>
+              <action name="Remove commands from existing profiles (Mac and Linux)" id="192" beanClass="com.install4j.runtime.beans.actions.control.RunScriptAction">
+                <serializedBean>
+                  <property name="script">
+                    <object class="com.install4j.api.beans.ScriptProperty">
+                      <property name="value" type="string">String[] profiles = new String[] { ".bash_profile", ".zprofile" };
+for(String profile : profiles) {
+    File bashProfile = new File(System.getProperty("user.home"), profile);
+    if(bashProfile.exists()) {
+        File bashProfileNew = new File(System.getProperty("user.home"), profile + ".new");
+        BufferedReader r = new BufferedReader(new FileReader(bashProfile));
+        try {
+            PrintWriter pw = new PrintWriter(new FileOutputStream(bashProfileNew));
+            try {
+                String l;
+                boolean w = false;
+                while(( l = r.readLine()) != null) {
+                    if(l.startsWith("#Added by DJ-Feet")) {
+                        w = true;
+                    }
+                    else if(w) {            
+                        if(l.startsWith("# End DJ-Feet"))
+                            w = false;
+                        else
+                          continue;
+                    }
+                    if(!w)
+                        pw.println(l);
+                }
+                pw.flush();
+            }
+            finally {
+                pw.close();
+            }
+            
+            File bashProfileOld = new File(System.getProperty("user.home"), profile + ".old");
+            bashProfileOld.delete();
+            bashProfile.renameTo(bashProfileOld);
+            bashProfileNew.renameTo(bashProfile);
+        }
+        finally {
+            r.close();
+        }
+    }
+}
+return true;
+
+</property>
+                    </object>
+                  </property>
+                </serializedBean>
+                <condition>!Util.isWindows()</condition>
+              </action>
+              <action name="Write text to a file" id="193" beanClass="com.install4j.runtime.beans.actions.text.WriteTextFileAction" actionElevationType="elevated" failureStrategy="askQuit" errorMessage="Could not configure agent environment on your .bash_profile">
+                <serializedBean>
+                  <property name="append" type="boolean" value="true" />
+                  <property name="file">
+                    <object class="java.io.File">
+                      <string>${installer:sys.userHome}/.bash_profile</string>
+                    </object>
+                  </property>
+                  <property name="text" type="string">#Added by DJ-Feet
+export DBUS_SESSION_BUS_ADDRESS=$HOME/.dbus-java/session-bus
+# End DJ-Feet</property>
+                </serializedBean>
+                <condition>!Util.isWindows()</condition>
+              </action>
+              <action name="Write text to a file" id="194" beanClass="com.install4j.runtime.beans.actions.text.WriteTextFileAction" actionElevationType="elevated" failureStrategy="askQuit" errorMessage="Could not configure agent environment on your .bash_profile">
+                <serializedBean>
+                  <property name="append" type="boolean" value="true" />
+                  <property name="file">
+                    <object class="java.io.File">
+                      <string>${installer:sys.userHome}/.zprofile</string>
+                    </object>
+                  </property>
+                  <property name="text" type="string">#Added by DJ-Feet
+export DBUS_SESSION_BUS_ADDRESS=$HOME/.dbus-java/session-bus
+# End DJ-Feet</property>
+                </serializedBean>
+                <condition>Util.isMacOS()</condition>
               </action>
             </actions>
             <formComponents>

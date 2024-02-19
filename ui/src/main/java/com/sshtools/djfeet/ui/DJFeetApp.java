@@ -20,7 +20,9 @@ public class DJFeetApp extends JajaFXApp<DJFeet> {
 	private Tiles<DJFeetApp> tiles;
 
 	public DJFeetApp() {
-		super(DJFeetApp.class.getResource("icon.png"), RESOURCES.getString("title"), (DJFeet) DJFeet.getInstance());
+		super(DJFeetApp.class.getResource("icon.png"), 
+		      RESOURCES.getString("title"), (DJFeet) DJFeet.getInstance(),
+		      DJFeet.getInstance().getAppPreferences());
 	}
 
 	public final Tiles<DJFeetApp> getTiles() {
@@ -32,7 +34,7 @@ public class DJFeetApp extends JajaFXApp<DJFeet> {
 	}
 
 	@Override
-	protected void needUpdate() {
+	public void needUpdate() {
 		maybeQueue(() -> {
 			if (!(tiles.getCurrentPage() instanceof AboutPage) && !(tiles.getCurrentPage() instanceof UpdatePage)) {
 				tiles.popup(UpdatePage.class);
