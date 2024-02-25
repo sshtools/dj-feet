@@ -1,6 +1,7 @@
 open module com.sshtools.djfeet.ui {
 	requires com.sshtools.jajafx;
 	requires com.sshtools.jaul;
+	requires com.sshtools.jadbus.lib;
 	requires org.controlsfx.controls;
 	requires org.kordamp.ikonli.javafx;
 	requires org.kordamp.ikonli.fontawesome5;

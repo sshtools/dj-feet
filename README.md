@@ -56,7 +56,6 @@ Other features include :-
 
 With the installers, also included are easy launchers for all of the [dbus-java-utils](https://github.com/hypfvieh/dbus-java/tree/master/dbus-java-utils) tools.
 
- * `dbus-java-daemon` and `dbus-java-daemonc`. A replacement daemon you can use as a broker for operating systems that don't already have one. The former is installed as a service, and the latter as a command line tool you can just run when needed.
  * `dbus-java-list`. Just list all exported names.
  * `dbus-java-caller`. Invoke dbus methods.          
  * `dbus-java-create-interface`. Geneate a Java interface from exported objects. DEPRECATED
@@ -69,6 +68,7 @@ With the installers, also included are easy launchers for all of the [dbus-java-
 
 ### 2.0.0
 
+ * Daemon now a separate package
  * Now developed by JADAPTIVE.   
  * Built-in updater.
  * Ability to access remote buses over SSH

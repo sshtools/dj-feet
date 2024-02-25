@@ -36,6 +36,9 @@
 		<install4j.updatesBase>http://localhost/${project.name}</install4j.updatesBase>
 		<install4j.jaulAppId>com.sshtools.DJFeet</install4j.jaulAppId>
 		<install4j.jaulUpdaterId>54</install4j.jaulUpdaterId>
+		
+		<picocli.version>4.7.5</picocli.version>
+		<native.image.annotations.version>0.9.1</native.image.annotations.version>
 	</properties>
 	<url>https://jadaptive.com</url>
 	<licenses>
@@ -75,7 +78,7 @@
 			<dependency>
 				<groupId>info.picocli</groupId>
 				<artifactId>picocli</artifactId>
-				<version>4.7.5</version>
+				<version>${picocli.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.github.hypfvieh</groupId>
@@ -213,7 +216,6 @@
 	</repositories>
 	<modules>
 		<module>ui</module>
-		<module>daemon</module>
 		<module>installer</module>
 	</modules>
 </project>
