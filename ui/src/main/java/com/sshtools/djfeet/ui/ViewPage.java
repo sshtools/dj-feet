@@ -2,16 +2,14 @@ package com.sshtools.djfeet.ui;
 
 import static javafx.application.Platform.runLater;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ResourceBundle;
-import java.util.prefs.Preferences;
 
 import org.freedesktop.dbus.connections.impl.DBusConnectionBuilder;
 import org.freedesktop.dbus.exceptions.DBusException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.sshtools.jadbus.lib.JadbusAddress;
 import com.sshtools.jajafx.AboutPage;
 import com.sshtools.jajafx.AbstractTile;
 import com.sshtools.jajafx.PageTransition;
@@ -44,23 +42,20 @@ public class ViewPage extends AbstractTile<DJFeetApp> {
 			LOG.error("Failed to connect to session bus.", e);
 		}
 
-		String address = null;
+//		try {
+//			createTabForConnectionBuilder(DBusConnectionBuilder.forAddress(JadbusAddress.systemBus()), "Jadbus System");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+
 		try {
-			try (var reader = Files
-					.newBufferedReader(Paths.get(System.getProperty("java.io.tmpdir")).resolve("dbus-java.address"))) {
-				address = reader.readLine();
-			}
-			createTabForConnectionBuilder(DBusConnectionBuilder.forAddress(address), "D-Bus Java");
+			var sessionBus = JadbusAddress.sessionBus(false);
+			LOG.info("Looking for Jadbus on {}", sessionBus);
+			createTabForConnectionBuilder(DBusConnectionBuilder.forAddress(sessionBus), "Jadbus Session");
 		} catch (Exception e) {
-			try {
-				address = Preferences.systemRoot().node("com/sshtools/djfeet/daemon").get("dbusAddress", null);
-				if (address == null)
-					address = Preferences.systemRoot().node("uk/co/bithatch/djfeet").get("dbusAddress", null);
-				if (address != null)
-					createTabForConnectionBuilder(DBusConnectionBuilder.forAddress(address), "D-Bus Java");
-			} catch (Exception e2) {
-			}
+			e.printStackTrace();
 		}
+		
 		getContext().getContainer().getScheduler().execute(() -> {
 			runLater(() -> {
 				var insertPoint = tabs.getTabs().size();
