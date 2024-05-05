@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import com.sshtools.jajafx.AboutPage;
 import com.sshtools.jajafx.JajaFXApp;
+import com.sshtools.jajafx.JajaFXAppWindow;
 import com.sshtools.jajafx.Tiles;
 import com.sshtools.jajafx.UpdatePage;
 
@@ -13,7 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 
-public class DJFeetApp extends JajaFXApp<DJFeet> {
+public class DJFeetApp extends JajaFXApp<DJFeet, JajaFXAppWindow<DJFeetApp>> {
 
 	final static ResourceBundle RESOURCES = ResourceBundle.getBundle(DJFeet.class.getName());
 
