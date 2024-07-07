@@ -93,6 +93,11 @@ public class ViewPage extends AbstractTile<DJFeetApp> {
 	}
 
 	private void createTabForConnectionBuilder(DBusConnectionBuilder builder, String name) throws DBusException {
+		builder.withShared(false);
+		
+		/* https://github.com/hypfvieh/dbus-java/issues/253#issuecomment-2212051423 */
+		builder.transportConfig().withTimeout(500);
+		
 		var busContent = new DBusConnectionTab(tabs, getContext());
 		var tab = new Tab(name, busContent);
 		tab.setClosable(false);
