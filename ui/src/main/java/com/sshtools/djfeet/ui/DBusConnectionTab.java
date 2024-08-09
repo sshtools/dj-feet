@@ -405,7 +405,7 @@ public class DBusConnectionTab extends AnchorPane {
 			}
 			TreeItem<BusTreeData> interfacesItem = null;
 			for (var element : root.children()) {
-				if (!treeItem.equals(rootTreeItem) && element.tagName().equals("interface")) {
+				if (/* !treeItem.equals(rootTreeItem) && */ element.tagName().equals("interface")) {
 					if (interfacesItem == null) {
 						interfacesItem = new TreeItem<>(new GroupData("Interfaces"));
 						treeItem.getChildren().add(interfacesItem);
