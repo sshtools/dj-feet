@@ -9,14 +9,14 @@
 	<packaging>pom</packaging>
 	<description>A Java clone of D-Feet and various cross-platform D-Bus tools.</description>
 	<properties>
-		<maven.compiler.target>17</maven.compiler.target>
-		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>21</maven.compiler.target>
+		<maven.compiler.source>21</maven.compiler.source>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<main.class>coms.shtools.djfeet.ui.DJFeetApp</main.class>
 		<javafx.maven.plugin.version>0.0.8</javafx.maven.plugin.version>
 		<gluonfx.maven.plugin.version>1.0.16</gluonfx.maven.plugin.version>
-        <javafx.version>21.0.4-ea+1</javafx.version>
+        <javafx.version>23-ea+22</javafx.version>
 		<dbus.version>5.0.0</dbus.version>
 		<graalvm.version>0.9.25</graalvm.version>
 
