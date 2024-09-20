@@ -35,7 +35,7 @@ pipeline {
 					 			globalMavenSettingsConfig: "${env.MAVEN_CONFIG_ID}"
 					 		) {
 					 		  	sh 'mvn -U -Dbuild.mediaTypes=unixInstaller,unixArchive,linuxRPM,linuxDeb ' +
-					 		  	   '-P cross-platform,installers ' +
+					 		  	   '-P cross-platform ' +
 					 		  	   '-Dbuild.projectProperties=$BUILD_PROPERTIES ' +
 					 		  	   '-DbuildInstaller=true clean package'
 					 		  	
@@ -72,7 +72,7 @@ pipeline {
 					 		) {
 					 		  	bat 'mvn -U -Dinstall4j.verbose=true -Dbuild.mediaTypes=windows,windowsArchive ' +
 					 		  	    '"-Dbuild.projectProperties=%BUILD_PROPERTIES%" ' +
-					 		  	   '-P cross-platform,installers ' +
+					 		  	   '-P cross-platform ' +
 				 		  	        'clean package'
 					 		  	
 					 		  	/* Stash installers */
@@ -109,7 +109,7 @@ pipeline {
 					 			// -Dinstall4j.disableNotarization=true 
 					 		  	sh 'mvn -U -Dbuild.mediaTypes=macos,macosFolder,macosFolderArchive ' +
 					 		  	   '-Dbuild.projectProperties=$BUILD_PROPERTIES ' +
-					 		  	   '-P cross-platform,installers ' +
+					 		  	   '-P cross-platform ' +
 					 		  	   'clean package'
 					 		  	
 					 		  	/* Stash installers */
