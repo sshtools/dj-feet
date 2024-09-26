@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="10.0.8" transformSequenceNumber="10">
-  <directoryPresets config="../../../../ui/src/main/resources/com/sshtools/djfeet/ui" />
+  <directoryPresets config="../../../target/dependencies/common" />
   <application name="DJ-Feet" applicationId="9111-8436-8395-1844" mediaDir="target/media" mediaFilePattern="${compiler:sys.shortName}-${compiler:sys.platform}-${compiler:sys.version}" shortName="dj-feet" publisher="JADAPTIVE Limited" publisherWeb="https://jadaptive.com" version="0.0.1" allPathsRelative="true" convertDotsToUnderscores="false" macVolumeId="ffee23fd2eeafa87" javaMinVersion="21" javaMaxVersion="21">
     <variables>
       <variable name="install4j.phase" value="continuous" description="The phase under which the updates.xml will be initially placed. Usually &quot;continuous&quot;" />
@@ -39,6 +39,7 @@
       <mountPoint id="47" location="linux" />
       <mountPoint id="141" location="linux-aarch64" />
       <mountPoint id="142" />
+      <mountPoint id="191" location="mac-aarch64" />
     </mountPoints>
     <entries>
       <dirEntry mountPoint="24" file="../../../target/dependencies/common" subDirectory="common" />
@@ -47,6 +48,7 @@
       <dirEntry mountPoint="47" file="../../../target/dependencies/linux" subDirectory="linux" />
       <dirEntry mountPoint="141" file="../../../target/dependencies/linux-aarch64" subDirectory="linux-aarch64" />
       <fileEntry mountPoint="142" file="../../../../ui/src/main/resources/com/sshtools/djfeet/ui/icon.png" />
+      <dirEntry mountPoint="191" file="../../../target/dependencies/mac-aarch64" subDirectory="mac" />
     </entries>
     <components>
       <component name="Required Components" id="184" changeable="false">
@@ -108,6 +110,7 @@
           <scanDirectory location="win" failOnError="false" />
           <scanDirectory location="linux" failOnError="false" />
           <scanDirectory location="linux-aarch64" failOnError="false" />
+          <scanDirectory location="mac-aarch64" failOnError="false" />
         </classPath>
         <modulePath>
           <directory location="lib" failOnError="false" />
@@ -222,34 +225,12 @@
         <file path="../../../../ui/src/main/resources/com/sshtools/djfeet/ui/icon.png" />
       </iconImageFiles>
     </launcher>
-    <launcher name="dj-feet-register" id="181" menuName="Push SFTP GUI">
-      <executable name="dj-feet-register" iconSet="true" executableDir="." stderrFile="${installer:sys.javaHome}/.dj-feet/ui.log" redirectStdout="true" stdoutFile="${installer:sys.javaHome}/.dj-feet/ui.log" executableMode="console" checkConsoleParameter="true" />
-      <java mainClass="com.sshtools.djfeet.ui/com.sshtools.djfeet.ui.DJFeet" mainMode="module" vmParameters="-Dinstall4j.installationDir=${installer:sys.installationDir}" arguments="--jaul-register">
-        <modulePath>
-          <directory location="lib" failOnError="false" />
-          <directory location="mac" failOnError="false" />
-          <directory location="win" failOnError="false" />
-          <directory location="linux" failOnError="false" />
-          <directory location="linux-aarch64" failOnError="false" />
-        </modulePath>
-      </java>
-      <iconImageFiles>
-        <file path="../../../../ui/src/main/resources/com/sshtools/djfeet/ui/icon-16.png" />
-        <file path="../../../../ui/src/main/resources/com/sshtools/djfeet/ui/icon-24.png" />
-        <file path="../../../../ui/src/main/resources/com/sshtools/djfeet/ui/icon-32.png" />
-        <file path="../../../../ui/src/main/resources/com/sshtools/djfeet/ui/icon-48.png" />
-        <file path="../../../../ui/src/main/resources/com/sshtools/djfeet/ui/icon-64.png" />
-        <file path="../../../../ui/src/main/resources/com/sshtools/djfeet/ui/icon-96.png" />
-        <file path="../../../../ui/src/main/resources/com/sshtools/djfeet/ui/icon-128.png" />
-        <file path="../../../../ui/src/main/resources/com/sshtools/djfeet/ui/icon-256.png" />
-        <file path="../../../../ui/src/main/resources/com/sshtools/djfeet/ui/icon.png" />
-      </iconImageFiles>
-      <macStaticAssociations>
-        <urlHandler scheme="jaul" />
-      </macStaticAssociations>
-    </launcher>
   </launchers>
   <installerGui autoUpdateDescriptorUrl="https://sshtools-public.s3.eu-west-1.amazonaws.com/dj-feet/${compiler:install4j.phase}/updates.xml" useAutoUpdateBaseUrl="true" autoUpdateBaseUrl="https://sshtools-public.s3.eu-west-1.amazonaws.com/dj-feet/${compiler:sys.version}/">
+    <customCode>
+      <archive location="../../../target/dependencies/common/jaul.jar" />
+      <archive location="../../../target/dependencies/common/slf4j-api.jar" />
+    </customCode>
     <applications>
       <application id="installer" beanClass="com.install4j.runtime.beans.applications.InstallerApplication">
         <serializedBean>
@@ -444,23 +425,9 @@ return console.askOkCancel(message, true);
                 </serializedBean>
                 <condition>!context.getBooleanVariable("sys.programGroupDisabled")</condition>
               </action>
-              <action id="125" beanClass="com.install4j.runtime.beans.actions.misc.RunExecutableAction" actionElevationType="elevated" rollbackBarrierExitCode="0" failureStrategy="askRetryQuit">
+              <action id="202" beanClass="com.sshtools.jaul.RegisterJaulAppAction" rollbackBarrierExitCode="0">
                 <serializedBean>
-                  <property name="arguments" type="array" elementType="string" length="0" />
-                  <property name="executable">
-                    <object class="java.io.File">
-                      <string>dj-feet-register</string>
-                    </object>
-                  </property>
-                  <property name="keepConsoleWindow" type="boolean" value="true" />
-                  <property name="logArguments" type="boolean" value="true" />
-                  <property name="timeout" type="int" value="20" />
-                  <property name="wait" type="boolean" value="true" />
-                  <property name="workingDirectory">
-                    <object class="java.io.File">
-                      <string>.</string>
-                    </object>
-                  </property>
+                  <property name="appCategory" type="enum" class="com.sshtools.jaul.AppCategory" value="GUI" />
                 </serializedBean>
               </action>
             </actions>
@@ -594,25 +561,7 @@ return console.askYesNo(message, true);
           </screen>
           <screen id="27" beanClass="com.install4j.runtime.beans.screens.UninstallationScreen" rollbackBarrierExitCode="0">
             <actions>
-              <action id="124" beanClass="com.install4j.runtime.beans.actions.misc.RunExecutableAction" actionElevationType="elevated" rollbackBarrierExitCode="0">
-                <serializedBean>
-                  <property name="arguments" type="array" elementType="string" length="1">
-                    <element index="0">--jaul-deregister</element>
-                  </property>
-                  <property name="executable">
-                    <object class="java.io.File">
-                      <string>dj-feet</string>
-                    </object>
-                  </property>
-                  <property name="timeout" type="int" value="20" />
-                  <property name="wait" type="boolean" value="true" />
-                  <property name="workingDirectory">
-                    <object class="java.io.File">
-                      <string>.</string>
-                    </object>
-                  </property>
-                </serializedBean>
-              </action>
+              <action id="203" beanClass="com.sshtools.jaul.DeregisterJaulAppAction" rollbackBarrierExitCode="0" />
               <action id="29" beanClass="com.install4j.runtime.beans.actions.UninstallFilesAction" actionElevationType="elevated" rollbackBarrierExitCode="0" />
             </actions>
             <formComponents>
@@ -1476,6 +1425,7 @@ return true;</property>
         <entry location="mac" />
         <entry location="win" />
         <entry location="linux-aarch64" />
+        <entry location="mac-aarch64" />
       </exclude>
     </linuxDeb>
     <windows name="Windows x64" id="34" installDir="Jadaptive\DJ-Feet" architecture="64">
@@ -1483,14 +1433,16 @@ return true;</property>
         <entry location="mac" />
         <entry location="linux" />
         <entry location="linux-aarch64" />
+        <entry location="mac-aarch64" />
       </exclude>
       <jreBundle usePack200="false" />
     </windows>
-    <macosFolder name="macOS Folder" id="36" architecture="universal" signLaunchers="true">
+    <macosFolder name="macOS Folder (Intel)" id="36" mediaFileName="${compiler:sys.shortName}-${compiler:sys.platform}-x86_64-${compiler:sys.version}" signLaunchers="true">
       <exclude>
         <entry location="win" />
         <entry location="linux" />
         <entry location="linux-aarch64" />
+        <entry location="mac-aarch64" />
       </exclude>
       <jreBundle usePack200="false" />
     </macosFolder>
@@ -1499,6 +1451,7 @@ return true;</property>
         <entry location="mac" />
         <entry location="win" />
         <entry location="linux-aarch64" />
+        <entry location="mac-aarch64" />
       </exclude>
     </linuxRPM>
     <unixInstaller name="Linux Installer amd64" id="116" mediaFileName="${compiler:sys.shortName}-linux-amd64-${compiler:sys.version}">
@@ -1506,6 +1459,7 @@ return true;</property>
         <entry location="mac" />
         <entry location="win" />
         <entry location="linux-aarch64" />
+        <entry location="mac-aarch64" />
       </exclude>
     </unixInstaller>
     <unixInstaller name="Linux Installer aarch64" id="133" mediaFileName="${compiler:sys.shortName}-linux-aarch64-${compiler:sys.version}">
@@ -1513,6 +1467,7 @@ return true;</property>
         <entry location="mac" />
         <entry location="win" />
         <entry location="linux" />
+        <entry location="mac-aarch64" />
       </exclude>
       <jreBundle platform="linux-aarch64" />
     </unixInstaller>
@@ -1521,6 +1476,7 @@ return true;</property>
         <entry location="mac" />
         <entry location="win" />
         <entry location="linux" />
+        <entry location="mac-aarch64" />
       </exclude>
       <jreBundle platform="linux-aarch64" />
     </linuxDeb>
@@ -1529,8 +1485,18 @@ return true;</property>
         <entry location="mac" />
         <entry location="win" />
         <entry location="linux" />
+        <entry location="mac-aarch64" />
       </exclude>
       <jreBundle platform="linux-aarch64" />
     </linuxRPM>
+    <macosFolder name="macOS Folder (Arm)" id="190" mediaFileName="${compiler:sys.shortName}-${compiler:sys.platform}-aarch64-${compiler:sys.version}" architecture="aarch64" signLaunchers="true">
+      <exclude>
+        <entry location="mac" />
+        <entry location="win" />
+        <entry location="linux" />
+        <entry location="linux-aarch64" />
+      </exclude>
+      <jreBundle usePack200="false" />
+    </macosFolder>
   </mediaSets>
 </install4j>
