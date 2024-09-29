@@ -38,8 +38,8 @@
       <mountPoint id="46" location="win" />
       <mountPoint id="47" location="linux" />
       <mountPoint id="141" location="linux-aarch64" />
-      <mountPoint id="142" />
       <mountPoint id="191" location="mac-aarch64" />
+      <mountPoint id="142" />
     </mountPoints>
     <entries>
       <dirEntry mountPoint="24" file="../../../target/dependencies/common" subDirectory="common" />
@@ -47,8 +47,8 @@
       <dirEntry mountPoint="46" file="../../../target/dependencies/win" subDirectory="win" />
       <dirEntry mountPoint="47" file="../../../target/dependencies/linux" subDirectory="linux" />
       <dirEntry mountPoint="141" file="../../../target/dependencies/linux-aarch64" subDirectory="linux-aarch64" />
-      <fileEntry mountPoint="142" file="../../../../ui/src/main/resources/com/sshtools/djfeet/ui/icon.png" />
       <dirEntry mountPoint="191" file="../../../target/dependencies/mac-aarch64" subDirectory="mac" />
+      <fileEntry mountPoint="142" file="../../../../ui/src/main/resources/com/sshtools/djfeet/ui/icon.png" />
     </entries>
     <components>
       <component name="Required Components" id="184" changeable="false">
@@ -425,7 +425,7 @@ return console.askOkCancel(message, true);
                 </serializedBean>
                 <condition>!context.getBooleanVariable("sys.programGroupDisabled")</condition>
               </action>
-              <action id="202" beanClass="com.sshtools.jaul.RegisterJaulAppAction" rollbackBarrierExitCode="0">
+              <action id="202" beanClass="com.sshtools.jaul.RegisterJaulAppAction" actionElevationType="elevated" rollbackBarrierExitCode="0">
                 <serializedBean>
                   <property name="appCategory" type="enum" class="com.sshtools.jaul.AppCategory" value="GUI" />
                 </serializedBean>

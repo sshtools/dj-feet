@@ -36,6 +36,7 @@
 		<install4j.updatesBase>http://localhost/${project.name}</install4j.updatesBase>
 		<install4j.jaulAppId>com.sshtools.DJFeet</install4j.jaulAppId>
 		<install4j.jaulUpdaterId>54</install4j.jaulUpdaterId>
+		<install4j.jaulBranches></install4j.jaulBranches>
 	</properties>
 	<url>https://jadaptive.com</url>
 	<licenses>
@@ -65,7 +66,7 @@
 			<dependency>
 				<groupId>com.sshtools</groupId>
 				<artifactId>jaul</artifactId>
-				<version>0.9.11</version>
+				<version>0.9.12-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>org.slf4j</groupId>
@@ -172,7 +173,7 @@
 				<plugin>
 					<groupId>com.install4j</groupId>
 					<artifactId>install4j-maven</artifactId>
-					<version>10.0.6</version>
+					<version>10.0.8</version>
 				</plugin>
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
