@@ -101,7 +101,7 @@
     </components>
   </files>
   <launchers>
-    <launcher name="dj-feet" id="52" menuName="Push SFTP GUI">
+    <launcher name="dj-feet" id="52" menuName="Push SFTP GUI" useCustomMacosExecutableName="true" customMacosExecutableName="DJ-Feet">
       <executable name="dj-feet" iconSet="true" executableDir="." stderrFile="${installer:sys.javaHome}/.dj-feet/ui.log" redirectStdout="true" stdoutFile="${installer:sys.javaHome}/.dj-feet/ui.log" executableMode="gui" checkConsoleParameter="true" />
       <java mainClass="com.sshtools.djfeet.ui.DJFeet" vmParameters="-Dinstall4j.installationDir=${installer:sys.installationDir}">
         <classPath>
