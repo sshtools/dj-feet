@@ -50,9 +50,9 @@ public class DJFeetApp extends JajaFXApp<DJFeet, JajaFXAppWindow<DJFeetApp>> {
 	}
 
 	@Override
-	protected Node createContent(Stage stage) {
+	protected Node createContent(Stage stage, JajaFXAppWindow<DJFeetApp> window) {
 
-		tiles = new Tiles<>(this);
+		tiles = new Tiles<>(this, window);
 		tiles.add(ViewPage.class);
 		tiles.getStyleClass().add("padded");
 		return tiles;
