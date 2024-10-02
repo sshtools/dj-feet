@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="10.0.8" transformSequenceNumber="10">
-  <directoryPresets config="../../../../ui/src/main/resources/com/sshtools/djfeet/ui" />
+  <directoryPresets config="../../../target/dependencies/common" />
   <application name="DJ-Feet" applicationId="9111-8436-8395-1844" mediaDir="target/media" mediaFilePattern="${compiler:sys.shortName}-${compiler:sys.platform}-${compiler:sys.version}" shortName="dj-feet" publisher="JADAPTIVE Limited" publisherWeb="https://jadaptive.com" version="0.0.1" allPathsRelative="true" convertDotsToUnderscores="false" macVolumeId="ffee23fd2eeafa87" javaMinVersion="20">
     <variables>
       <variable name="install4j.phase" value="continuous" description="The phase under which the updates.xml will be initially placed. Usually &quot;continuous&quot;" />
@@ -84,18 +84,6 @@
           <entry location="dbus-java-interface-code-generator" fileType="launcher" />
           <entry location="dbus-java-caller" fileType="launcher" />
           <entry location="dbus-java-type-string-to-java" fileType="launcher" />
-        </include>
-      </component>
-      <component name="D-Bus Daemon" id="145">
-        <include>
-          <entry location="lib/dj-feet-daemon.jar" />
-          <entry location="lib/slf4j-simple.jar" />
-          <entry location="lib/dbus-java-transport-native-unixsocket.jar" />
-          <entry location="lib/slf4j-api.jar" />
-          <entry location="lib/dbus-java-transport-tcp.jar" />
-          <entry location="lib/dbus-java-core.jar" />
-          <entry location="dbus-java-daemonc" fileType="launcher" />
-          <entry location="dbus-java-daemon" fileType="launcher" />
         </include>
       </component>
     </components>
@@ -252,6 +240,10 @@
     </launcher>
   </launchers>
   <installerGui autoUpdateDescriptorUrl="https://sshtools-public.s3.eu-west-1.amazonaws.com/dj-feet/${compiler:install4j.phase}/updates.xml" useAutoUpdateBaseUrl="true" autoUpdateBaseUrl="https://sshtools-public.s3.eu-west-1.amazonaws.com/dj-feet/${compiler:sys.version}/">
+    <customCode>
+      <archive location="../../../target/dependencies/common/jaul.jar" />
+      <archive location="../../../target/dependencies/common/slf4j-api.jar" />
+    </customCode>
     <applications>
       <application id="installer" beanClass="com.install4j.runtime.beans.applications.InstallerApplication">
         <serializedBean>
@@ -446,23 +438,9 @@ return console.askOkCancel(message, true);
                 </serializedBean>
                 <condition>!context.getBooleanVariable("sys.programGroupDisabled")</condition>
               </action>
-              <action id="125" beanClass="com.install4j.runtime.beans.actions.misc.RunExecutableAction" actionElevationType="elevated" rollbackBarrierExitCode="0" failureStrategy="askRetryQuit">
+              <action id="189" beanClass="com.sshtools.jaul.RegisterJaulAppAction" actionElevationType="elevated" rollbackBarrierExitCode="0">
                 <serializedBean>
-                  <property name="arguments" type="array" elementType="string" length="0" />
-                  <property name="executable">
-                    <object class="java.io.File">
-                      <string>dj-feet-register</string>
-                    </object>
-                  </property>
-                  <property name="keepConsoleWindow" type="boolean" value="true" />
-                  <property name="logArguments" type="boolean" value="true" />
-                  <property name="timeout" type="int" value="20" />
-                  <property name="wait" type="boolean" value="true" />
-                  <property name="workingDirectory">
-                    <object class="java.io.File">
-                      <string>.</string>
-                    </object>
-                  </property>
+                  <property name="appCategory" type="enum" class="com.sshtools.jaul.AppCategory" value="GUI" />
                 </serializedBean>
               </action>
             </actions>
@@ -596,25 +574,7 @@ return console.askYesNo(message, true);
           </screen>
           <screen id="27" beanClass="com.install4j.runtime.beans.screens.UninstallationScreen" rollbackBarrierExitCode="0">
             <actions>
-              <action id="124" beanClass="com.install4j.runtime.beans.actions.misc.RunExecutableAction" actionElevationType="elevated" rollbackBarrierExitCode="0">
-                <serializedBean>
-                  <property name="arguments" type="array" elementType="string" length="1">
-                    <element index="0">--jaul-deregister</element>
-                  </property>
-                  <property name="executable">
-                    <object class="java.io.File">
-                      <string>dj-feet</string>
-                    </object>
-                  </property>
-                  <property name="timeout" type="int" value="20" />
-                  <property name="wait" type="boolean" value="true" />
-                  <property name="workingDirectory">
-                    <object class="java.io.File">
-                      <string>.</string>
-                    </object>
-                  </property>
-                </serializedBean>
-              </action>
+              <action id="190" beanClass="com.sshtools.jaul.DeregisterJaulAppAction" actionElevationType="elevated" rollbackBarrierExitCode="0" />
               <action id="29" beanClass="com.install4j.runtime.beans.actions.UninstallFilesAction" actionElevationType="elevated" rollbackBarrierExitCode="0" />
             </actions>
             <formComponents>

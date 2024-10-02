@@ -87,18 +87,6 @@
           <entry location="dbus-java-type-string-to-java" fileType="launcher" />
         </include>
       </component>
-      <component name="D-Bus Daemon" id="145">
-        <include>
-          <entry location="lib/dj-feet-daemon.jar" />
-          <entry location="lib/slf4j-simple.jar" />
-          <entry location="lib/dbus-java-transport-native-unixsocket.jar" />
-          <entry location="lib/slf4j-api.jar" />
-          <entry location="lib/dbus-java-transport-tcp.jar" />
-          <entry location="lib/dbus-java-core.jar" />
-          <entry location="dbus-java-daemonc" fileType="launcher" />
-          <entry location="dbus-java-daemon" fileType="launcher" />
-        </include>
-      </component>
     </components>
   </files>
   <launchers>
@@ -562,7 +550,7 @@ return console.askYesNo(message, true);
           </screen>
           <screen id="27" beanClass="com.install4j.runtime.beans.screens.UninstallationScreen" rollbackBarrierExitCode="0">
             <actions>
-              <action id="203" beanClass="com.sshtools.jaul.DeregisterJaulAppAction" rollbackBarrierExitCode="0" />
+              <action id="203" beanClass="com.sshtools.jaul.DeregisterJaulAppAction" actionElevationType="elevated" rollbackBarrierExitCode="0" />
               <action id="29" beanClass="com.install4j.runtime.beans.actions.UninstallFilesAction" actionElevationType="elevated" rollbackBarrierExitCode="0" />
             </actions>
             <formComponents>
