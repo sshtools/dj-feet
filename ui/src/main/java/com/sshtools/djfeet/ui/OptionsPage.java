@@ -57,7 +57,7 @@ public class OptionsPage extends AbstractTile<DJFeetApp> {
 			}
 		});
 
-		prefBind = new PrefBind(getContext().getContainer().getAppPreferences());
+		prefBind = new PrefBind(getContext().getContainer().getUserPreferences());
 		prefBind.bind(executeImmediatelyIfNoArguments);
 		prefBind.bind(automaticUpdates);
 		prefBind.bind(Phase.class, phase);

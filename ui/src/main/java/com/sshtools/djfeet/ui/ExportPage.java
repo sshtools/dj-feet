@@ -79,7 +79,7 @@ public class ExportPage extends AbstractTile<DJFeetApp> {
 
 	@Override
 	protected void onConfigure() {
-		prefBind = new PrefBind(getContext().getContainer().getAppPreferences());
+		prefBind = new PrefBind(getContext().getContainer().getUserPreferences());
 		prefBind.bind(useDBusBoundProperty);
 		prefBind.bind(disableFilter);
 		prefBind.bind(outputDirectory);

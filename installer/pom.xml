@@ -226,7 +226,7 @@
 									<outputDirectory>
 										${project.build.directory}/dependencies/common</outputDirectory>
 									<excludeClassifiers>
-										linux,mac,win,linux-aarch64,jpms</excludeClassifiers>
+										linux,mac,win,linux-aarch64,jpms,mac-aarch64</excludeClassifiers>
 								</configuration>
 							</execution>
 							<execution>

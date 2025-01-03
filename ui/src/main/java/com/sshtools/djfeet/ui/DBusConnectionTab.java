@@ -271,7 +271,7 @@ public class DBusConnectionTab extends AnchorPane {
 	private void executeMethod(MethodData methodData) {
 		var newBusPage = context.getTiles().popup(ExecutePage.class, PageTransition.FROM_RIGHT);
 		newBusPage.init(connection, methodData);
-		if(methodData.getArguments().isEmpty() && context.getContainer().getAppPreferences().getBoolean("executeImmediatelyIfNoArguments", true)) {
+		if(methodData.getArguments().isEmpty() && context.getContainer().getUserPreferences().getBoolean("executeImmediatelyIfNoArguments", true)) {
 			context.getContainer().getScheduler().schedule(() -> {
 				runLater(() -> newBusPage.execute(null));
 			}, 1, TimeUnit.SECONDS);

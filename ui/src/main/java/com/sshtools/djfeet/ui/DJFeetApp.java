@@ -23,7 +23,7 @@ public class DJFeetApp extends JajaFXApp<DJFeet, JajaFXAppWindow<DJFeetApp>> {
 	public DJFeetApp() {
 		super(DJFeetApp.class.getResource("icon.png"), 
 		      RESOURCES.getString("title"), (DJFeet) DJFeet.getInstance(),
-		      DJFeet.getInstance().getAppPreferences());
+		      DJFeet.getInstance().getUserPreferences());
 	}
 
 	public final Tiles<DJFeetApp> getTiles() {
