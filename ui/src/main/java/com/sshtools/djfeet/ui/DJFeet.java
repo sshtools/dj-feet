@@ -1,9 +1,10 @@
 package com.sshtools.djfeet.ui;
 
-import com.sshtools.jajafx.AppUpdateService;
-import com.sshtools.jajafx.DelegatingAppUpdateService;
 import com.sshtools.jajafx.JajaApp;
-import com.sshtools.jajafx.JajaFXAppWindow;
+import com.sshtools.jajafx.updateable.AppUpdateService;
+import com.sshtools.jajafx.updateable.DelegatingAppUpdateService;
+import com.sshtools.jajafx.updateable.UpdateableJajaApp;
+import com.sshtools.jajafx.updateable.UpdateableJajaFXAppWindow;
 import com.sshtools.jaul.AppCategory;
 import com.sshtools.jaul.ArtifactVersion;
 import com.sshtools.jaul.JaulApp;
@@ -15,9 +16,9 @@ import picocli.CommandLine.IVersionProvider;
 
 @Command(name = "dj-feet", mixinStandardHelpOptions = true, description = "Debug DBus Applications", versionProvider = DJFeet.Version.class)
 @JaulApp(id = DJFeet.TOOLBOX_APP_ID, category = AppCategory.GUI, updaterId = "54", updatesUrl = "https://sshtools-public.s3.eu-west-1.amazonaws.com/dj-feet/${phase}/updates.xml")
-public class DJFeet extends JajaApp<DJFeetApp, JajaFXAppWindow<DJFeetApp>> {
+public class DJFeet extends UpdateableJajaApp<DJFeetApp, UpdateableJajaFXAppWindow<DJFeetApp>> {
 
-	public final static class PrefectBuilder extends JajaAppBuilder<DJFeet, PrefectBuilder, DJFeetApp> {
+	public final static class PrefectBuilder extends UpdateableJajaAppBuilder<DJFeet, PrefectBuilder, DJFeetApp> {
 
 		public static PrefectBuilder create() {
 			return new PrefectBuilder();
@@ -50,6 +51,10 @@ public class DJFeet extends JajaApp<DJFeetApp, JajaFXAppWindow<DJFeetApp>> {
 
 	DJFeet(PrefectBuilder builder) {
 		super(builder);
+	}
+
+	public static DJFeet getDJFeetInstance() {
+		return (DJFeet) getInstance();
 	}
 
 	@Override

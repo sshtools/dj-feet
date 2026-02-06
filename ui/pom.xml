@@ -53,14 +53,24 @@
 		<dependency>
 			<groupId>com.install4j</groupId>
 			<artifactId>install4j-runtime</artifactId>
-			<version>10.0.8</version>
+			<version>11.0.5</version>
 			<!-- MUST be provided, the runtime is added by I4J itself -->
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.sshtools</groupId>
 			<artifactId>jajafx-lib</artifactId>
-			<version>0.9.6</version>
+			<version>0.9.10</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sshtools</groupId>
+			<artifactId>jajafx-updateable</artifactId>
+			<version>0.9.10</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sshtools</groupId>
+			<artifactId>jajafx-jmetro</artifactId>
+			<version>0.9.10</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sshtools</groupId>

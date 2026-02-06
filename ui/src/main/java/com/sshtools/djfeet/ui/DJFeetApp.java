@@ -5,16 +5,16 @@ import static com.sshtools.jajafx.FXUtil.maybeQueue;
 import java.util.ResourceBundle;
 
 import com.sshtools.jajafx.AboutPage;
-import com.sshtools.jajafx.JajaFXApp;
-import com.sshtools.jajafx.JajaFXAppWindow;
 import com.sshtools.jajafx.Tiles;
-import com.sshtools.jajafx.UpdatePage;
+import com.sshtools.jajafx.updateable.UpdatePage;
+import com.sshtools.jajafx.updateable.UpdateableJajaFXApp;
+import com.sshtools.jajafx.updateable.UpdateableJajaFXAppWindow;
 
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 
-public class DJFeetApp extends JajaFXApp<DJFeet, JajaFXAppWindow<DJFeetApp>> {
+public class DJFeetApp extends UpdateableJajaFXApp<DJFeet, UpdateableJajaFXAppWindow<DJFeetApp>> {
 
 	final static ResourceBundle RESOURCES = ResourceBundle.getBundle(DJFeet.class.getName());
 
@@ -23,7 +23,7 @@ public class DJFeetApp extends JajaFXApp<DJFeet, JajaFXAppWindow<DJFeetApp>> {
 	public DJFeetApp() {
 		super(DJFeetApp.class.getResource("icon.png"), 
 		      RESOURCES.getString("title"), (DJFeet) DJFeet.getInstance(),
-		      DJFeet.getInstance().getUserPreferences());
+		      DJFeet.getDJFeetInstance().getUserPreferences()); 
 	}
 
 	public final Tiles<DJFeetApp> getTiles() {
@@ -50,7 +50,7 @@ public class DJFeetApp extends JajaFXApp<DJFeet, JajaFXAppWindow<DJFeetApp>> {
 	}
 
 	@Override
-	protected Node createContent(Stage stage, JajaFXAppWindow<DJFeetApp> window) {
+	protected Node createContent(Stage stage, UpdateableJajaFXAppWindow<DJFeetApp> window) {
 
 		tiles = new Tiles<>(this, window);
 		tiles.add(ViewPage.class);

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<install4j version="10.0.8" transformSequenceNumber="10">
+<install4j version="11.0.5" transformSequenceNumber="11">
   <directoryPresets config="../../../target/dependencies/common" />
   <application name="DJ-Feet" applicationId="9111-8436-8395-1844" mediaDir="target/media" mediaFilePattern="${compiler:sys.shortName}-${compiler:sys.platform}-${compiler:sys.version}" shortName="dj-feet" publisher="JADAPTIVE Limited" publisherWeb="https://jadaptive.com" version="0.0.1" allPathsRelative="true" convertDotsToUnderscores="false" macVolumeId="ffee23fd2eeafa87" javaMinVersion="20">
     <variables>
@@ -14,8 +14,14 @@
       <variable name="install4j.jaulUpdaterId" value="999" description="The ID (in this install4j project) of the updater application. Its a bit annoying we can't get this automatically!" />
       <variable name="install4j.exe.suffix" description="Suffix for executables" />
       <variable name="install4j.jaulBranches" description="Description" />
+      <variable name="install4j.appleIdPassword" />
+      <variable name="install4j.appleIssuerId" />
+      <variable name="install4j.appleKeyId" />
+      <variable name="install4j.applePrivateKeyFile" />
+      <variable name="install4j.safeNet.pin" />
+      <variable name="install4j.timestamp.server" />
     </variables>
-    <codeSigning macEnabled="true" macPkcs12File="${compiler:install4j.macPkcs12File}" windowsEnabled="true" windowsKeySource="windows" macNotarize="true" appleId="${compiler:install4j.appleId}">
+    <codeSigning macEnabled="true" macPkcs12File="${compiler:install4j.macPkcs12File}" windowsEnabled="true" windowsKeySource="executable" windowsExecutable="scsigntool -pin &quot;${compiler:install4j.safeNet.pin}&quot; sign /tr &quot;${compiler:install4j.timestamp.server}&quot; /fd sha256 /td sha256 /a &quot;$EXECUTABLE&quot;" macNotarize="true" macApiIssuer="${compiler:install4j.appleIssuerId}" macApiKey="${compiler:install4j.appleKeyId}" macApiPrivateKey="${compiler:install4j.applePrivateKeyFile}">
       <windowsKeystoreIdentifier issuer="${compiler:install4j.windowsKeystoreIssuer}" serial="${compiler:install4j.windowsKeystoreSerial}" subject="${compiler:install4j.windowsKeystoreSubject}" />
       <macSearchedJars>
         <entry>jna-*</entry>
@@ -1448,7 +1454,7 @@ return true;</property>
       </exclude>
       <jreBundle usePack200="false" />
     </windows>
-    <macosFolder name="macOS Folder" id="36" architecture="universal" signLaunchers="true">
+    <macosFolder name="macOS Folder" id="36" architecture="universal">
       <exclude>
         <entry location="win" />
         <entry location="linux" />

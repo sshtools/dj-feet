@@ -67,7 +67,7 @@
 			<dependency>
 				<groupId>com.sshtools</groupId>
 				<artifactId>jaul</artifactId>
-				<version>0.9.14</version>
+				<version>0.9.24</version>
 			</dependency>
 			<dependency>
 				<groupId>org.slf4j</groupId>
@@ -113,7 +113,7 @@
 			<dependency>
 				<groupId>com.sshtools</groupId>
 				<artifactId>dbus-java-transport-ssh</artifactId>
-				<version>0.9.10</version>
+				<version>0.9.11</version>
 			</dependency>
 		</dependencies>
 
@@ -174,7 +174,7 @@
 				<plugin>
 					<groupId>com.install4j</groupId>
 					<artifactId>install4j-maven</artifactId>
-					<version>10.0.8</version>
+					<version>11.0.5</version>
 				</plugin>
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
