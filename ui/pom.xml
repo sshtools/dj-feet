@@ -72,6 +72,34 @@
 			<artifactId>jajafx-jmetro</artifactId>
 			<version>0.9.10</version>
 		</dependency>
+		
+		<!-- TODO: We shouldn't need to incluide this or transit below explicitly.
+		           jajafx should pull them in as dependencies of the theme modules.
+		 -->
+        <dependency>
+            <groupId>org.jfxtras</groupId>
+            <artifactId>jmetro</artifactId>
+            <version>11.6.16</version>
+            <exclusions>
+				<exclusion>
+					<groupId>org.openjfx</groupId>
+					<artifactId>javafx-base</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.openjfx</groupId>
+					<artifactId>javafx-graphics</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.openjfx</groupId>
+					<artifactId>javafx-fxml</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.openjfx</groupId>
+					<artifactId>javafx-controls</artifactId>
+				</exclusion>
+			</exclusions>
+        </dependency>	
+        
 		<dependency>
 			<groupId>com.sshtools</groupId>
 			<artifactId>jadbus-lib</artifactId>
